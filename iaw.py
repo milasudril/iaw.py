@@ -12,14 +12,17 @@ def listen_on_dev_input(timeout, command):
 	proc = None
 	for event in i.event_gen():
 		now = time.monotonic_ns()
-		if event == None and now - start >= timeout*1e9:
-			if proc == None:
-				proc = subprocess.Popen(command)
+		if event == None:
+			if now - start >= timeout*1e9:
+				if proc == None:
+					proc = subprocess.Popen(command)
 		else:
-			if proc != None:
-				proc.terminate()
-				proc = None
-			start = now
+			(_, type_names, path, filename) = event
+			if filename != '':
+				if proc != None
+					proc.terminate()
+					proc = None
+				start = now
 
 def main(argv):
 	listen_on_dev_input(timeout = float(argv[1]), command = argv[2:])
