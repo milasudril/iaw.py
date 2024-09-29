@@ -19,7 +19,7 @@ def listen_on_dev_input(timeout, command):
 		else:
 			(_, type_names, path, filename) = event
 			if filename != '':
-				if proc != None
+				if proc != None:
 					proc.terminate()
 					proc = None
 				start = now
